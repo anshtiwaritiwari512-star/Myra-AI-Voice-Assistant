@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,21 +31,9 @@ jobs:
 
       - name: Generate Gradle Wrapper
         run: gradle wrapper --gradle-version 8.2
-        working-directory: .
-
-      - name: Build Release APK
-        run: ./gradlew assembleRelease
-        working-directory: .
-
-      - name: Upload Release APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: myra-release-apk
-          path: app/build/outputs/apk/release/*.apk
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
-        working-directory: .
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
